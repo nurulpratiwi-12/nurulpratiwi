@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Solo Baru</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Gaya Umum */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #FFFFFF; /* Latar belakang putih untuk seluruh halaman */
+        }
+
+        .container {
+            width: 80%; /* Mengubah lebar kontainer menjadi 80% */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .hero {
+            background-color: hsl(16, 79%, 56%); /* Warna aksen oranye */
+            color: white;
+            text-align: center;
+            padding: 40px 20px; /* Menyusutkan padding untuk memperkecil area header */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
+        }
+
+        .hero h1, .hero h2 {
+            margin: 10px 0;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        /* Navigasi */
+        .navbar {
+            background-color: #333; /* Latar belakang hitam */
+            color: white;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .navbar ul li a:hover {
+            color: #F4A460; /* Warna oranye lembut saat hover */
+        }
+
+        /* Konten */
+        .content {
+            background-color: #FFE4B5; /* Oranye muda */
+            padding: 20px 0;
+        }
+
+        .about h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .about-img {
+            width: 450px; /* Ukuran proporsional */
+            height: auto; /* Menyesuaikan */
+            display: block;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333; /* Tetap hitam */
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        /* Tampilan Responsif */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 30px 10px;
+            }
+
+            .about-img {
+                width: 90%;
+            }
+
+            .navbar ul li {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>SELAMAT DATANG DI</h1>
+            <h2>Warung Solo Baru</h2>
+            <p>Makanan dan Minuman Lezat dengan Cita Rasa Solo</p>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="container">
+            <ul>
+                <li><a href="menu.html"><i class="fas fa-utensils"></i> Menu</a></li>
+                <li><a href="lokasi.html"><i class="fas fa-map-marker-alt"></i> Lokasi</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="content">
+        <section class="about">
+            <div class="container">
+                <h2>Tentang Kami</h2>
+                <p>Warung Solo Baru adalah tempat makan dengan sajian khas Solo yang otentik dan harga terjangkau. Kami menawarkan makanan dan minuman berkualitas yang cocok untuk semua kalangan.</p>
+                <img src="images/WhatsApp Image 2024-12-05 at 12.02.47_859b0c7b.jpg" alt="Warung Solo" class="about-img">
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Warung Solo Baru. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+</body>
+</html>

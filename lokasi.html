@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokasi Warung Solo Baru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            background-color: #FFA500; /* Warna oranye */
+        }
+        .info-box {
+            background-color: #FFF5E5; /* Oranye muda untuk kotak informasi */
+            border: 2px solid #FFB84D; /* Warna oranye gelap */
+        }
+        footer {
+            background-color: #000; /* Tetap hitam */
+        }
+        .highlight {
+            color: #FFB84D; /* Warna aksen oranye */
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-orange-600 text-center text-white py-20">
+        <h1 class="text-5xl font-bold">Lokasi Kami</h1>
+        <p class="text-2xl mt-4">Temukan kami dengan mudah!</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <section class="flex flex-wrap gap-6 justify-center">
+            <!-- Informasi Lokasi -->
+            <div class="flex-1 min-w-[300px] p-6 rounded-lg shadow-lg info-box">
+                <p class="text-lg mb-4">
+                    <i class="fas fa-map-marker-alt text-orange-600 mr-3"></i>
+                    <strong>Alamat:</strong> Jln. K.H. Hayyung (Di bawah Indomaret)
+                </p>
+                <p class="text-lg mb-4">
+                    <i class="fas fa-phone-alt text-orange-600 mr-3"></i>
+                    <strong>Contact Person:</strong> 0821-9443-7684
+                </p>
+            </div>
+
+            <!-- Peta -->
+            <div id="map" class="flex-2 min-w-[300px] h-96 rounded-lg shadow-md"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-white text-center py-6">
+        <p>&copy; 2024 Warung Solo Baru. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        const map = L.map("map").setView([-6.1214112, 120.4607031], 18);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        // Marker utama untuk lokasi restoran
+            const marker = L.marker([-6.11438119,120.46045320]).addTo(map);
+            marker.bindTooltip("Warung Solo Baru", {
+                permanent: true,
+                direction: "top"
+            });
+            // Menambahkan GeoJSON Masjid (MultiLineString)
+                fetch("mesjid.geojson")
+                    .then(response => response.json())
+                    .then(geojsonData => {
+                        L.geoJSON(geojsonData, {
+                            onEachFeature: function (feature, layer) {
+                                if (feature.properties && feature.properties["Nama Mesjid"]) {
+                                    layer.bindPopup("<strong>Nama Mesjid:</strong> " + feature.properties["Nama Mesjid"]);
+                                }
+                            },
+                            style: function (feature) {
+                                return {
+                                    color: "green",
+                                    weight: 3,
+                                    opacity: 0.7
+                                };
+                            }
+                        }).addTo(map);
+                    });
+
+            // Menambahkan GeoJSON Sekolah (MultiLineString)
+                fetch("sekolah.geojson")
+                    .then(response => response.json())
+                    .then(geojsonData => {
+                        L.geoJSON(geojsonData, {
+                            onEachFeature: function (feature, layer) {
+                                if (feature.properties && feature.properties["Nama Sekolah diKota Selayar"]) {
+                                    layer.bindPopup("<strong>Nama Sekolah diKota Selayar:</strong> " + feature.properties["Nama Sekolah diKota Selayar"]);
+                                }
+                            },
+                            style: function (feature) {
+                                return {
+                                    color: "green",
+                                    weight: 3,
+                                    opacity: 0.7
+                                };
+                            }
+                        }).addTo(map);
+                    });
+                // Menambahkan GeoJSON jalan (MultiLineString)
+                fetch("jalan.geojson")
+                    .then(response => response.json())
+                    .then(geojsonData => {
+                        L.geoJSON(geojsonData, {
+                            onEachFeature: function (feature, layer) {
+                                if (feature.properties && feature.properties["Nama_Jalan"]) {
+                                    layer.bindPopup("<strong>Nama_Jalan:</strong> " + feature.properties["Nama_Jalan"]);
+                                }
+                            },
+                            style: function (feature) {
+                                return {
+                                    color: "green",
+                                    weight: 3,
+                                    opacity: 0.7
+                                };
+                            }
+                        }).addTo(map);
+                    });
+
+                // Menambahkan GeoJSON benteng (Polygon)
+                fetch("benteng.geojson")
+                    .then(response => response.json())
+                    .then(geojsonData => {
+                        L.geoJSON(geojsonData, {
+                            onEachFeature: function (feature, layer) {
+                                if (feature.properties && feature.properties["NAMOBJ"]) {
+                                    layer.bindPopup("<strong>NAMOBJ:</strong> " + feature.properties["NAMOBJ"]);
+                                }
+                            },
+                            style: function (feature) {
+                                return {
+                                    color: "blue",
+                                    weight: 2,
+                                    fillColor: "cyan",
+                                    fillOpacity: 0.5
+
+
+                                
+                                };
+                            }
+                        }).addTo(map);
+                    });
+    </script>
+</body>
+</html>
